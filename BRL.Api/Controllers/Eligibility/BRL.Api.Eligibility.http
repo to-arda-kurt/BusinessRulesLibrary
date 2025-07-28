@@ -1,0 +1,15 @@
+POST http://localhost:5247/api/eligibility
+Content-Type: application/json
+Accept: application/json
+
+{
+  "memberData": {
+    "memberId": 123,
+    "age": 32,
+    "memberSince": "2020-01-15T00:00:00Z"
+  },
+  "claimsToCheck": [
+    "LongTermBenefit",
+    "YoungFamilySupport"
+  ]
+}
