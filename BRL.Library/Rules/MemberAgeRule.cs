@@ -1,7 +1,7 @@
 using BRL.Core.Interfaces;
 using BRL.Core.Models;
 
-namespace BRL.Rules.Rules;
+namespace BRL.Library.Rules;
 
 public class MemberAgeRule : IRule
 {

@@ -1,8 +1,8 @@
 using BRL.Core.Enums;
 
-namespace BRL.Business;
+namespace BRL.Business.Models;
 
-public class ClaimValidationResult
+public record ClaimValidationResult
 {
     public ClaimType ClaimType { get; init; }
     public bool IsEligible { get; init; }

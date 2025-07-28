@@ -1,7 +1,8 @@
 using BRL.Core.Enums;
 using BRL.Core.Interfaces;
+using BRL.Library.Rules;
 
-namespace BRL.Core;
+namespace BRL.Business.Services;
 
 public static class RuleRegistry
 {
