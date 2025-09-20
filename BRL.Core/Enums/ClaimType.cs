@@ -2,6 +2,10 @@ namespace BRL.Core.Enums;
 
 public enum ClaimType
 {
-    LongTermBenefit,
-    YoungFamilySupport,
+    ClaimOne,
+    ClaimTwo,
+    ClaimThree,
+    ClaimFour,
+    ClaimFive,
+    ClaimSix
 }

@@ -1,27 +1,36 @@
-using BRL.Business.Models;
 using BRL.Core.Enums;
+using BRL.Core.Interfaces;
 using BRL.Core.Models;
+using BRL.Business.Models;
 
 namespace BRL.Business.Services;
 
 public class ClaimValidator
 {
-    public ClaimValidationResult Evaluate(MemberDataContext context, ClaimType claimType)
+    public ClaimValidationResult ValidateClaim(ClaimType claimType, MemberDataContext memberData)
     {
-        var rulesForClaim = RuleRegistry.GetRulesFor(claimType).ToList();
-        var validationResult = new ClaimValidationResult { ClaimType = claimType };
-        var allRulesMatch = rulesForClaim.Any(); 
-
-        foreach (var rule in rulesForClaim)
+        var rules = RuleRegistry.GetRulesFor(claimType);
+        
+        var failedRules = new List<RuleResult>();
+        var notes = new List<string>();
+        
+        foreach (var rule in rules)
         {
-            var result = rule.Evaluate(context);
-            validationResult.Notes.Add(result.Note);
-            if (!result.IsMatch) allRulesMatch = false;
+            var result = rule.Evaluate(memberData);
+            if (!result.IsMatch) 
+            {
+                failedRules.Add(result);
+                notes.Add(result.Note);
+            }
         }
         
-        return validationResult with { IsEligible = allRulesMatch };
+        bool isEligible = !failedRules.Any();
+        
+        return new ClaimValidationResult
+        {
+            ClaimType = claimType,
+            IsEligible = isEligible,
+            FailedRules = failedRules
+        };
     }
-
-    public List<ClaimValidationResult> Evaluate(MemberDataContext context, IEnumerable<ClaimType> claimTypes) =>
-        claimTypes.Select(claim => Evaluate(context, claim)).ToList();
 }

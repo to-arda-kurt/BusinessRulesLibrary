@@ -4,16 +4,11 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <RootNamespace>BRL.Library</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\BRL.Core\BRL.Core.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Rules\Domain\" />
+      <ProjectReference Include="..\BRL.Library\BRL.Library.csproj" />
     </ItemGroup>
 
 </Project>

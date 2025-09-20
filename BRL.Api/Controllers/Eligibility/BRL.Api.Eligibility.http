@@ -1,4 +1,5 @@
-POST http://localhost:5247/api/eligibility
+### Check member eligibility for multiple claim types
+POST http://localhost:5247/api/eligibility/check
 Content-Type: application/json
 Accept: application/json
 
@@ -6,10 +7,93 @@ Accept: application/json
   "memberData": {
     "memberId": 123,
     "age": 32,
-    "memberSince": "2020-01-15T00:00:00Z"
+    "memberSince": "2020-01-15T00:00:00Z",
+    "primaryAssetValue": 25000,
+    "secondaryAssetValue": 3000,
+    "hasActiveLoan": false,
+    "hasDelinquentLoan": false,
+    "isPep": false,
+    "isMemberRequestedMoneyThisMonth": false,
+    "isMemberHasAnotherActiveClaim": false,
+    "isMemberHasPendingClaim": false,
+    "isMemberHasOverduePayment": false
   },
   "claimsToCheck": [
-    "LongTermBenefit",
-    "YoungFamilySupport"
+    "ClaimOne",
+    "ClaimTwo",
+    "ClaimThree"
   ]
+}
+
+### Check eligibility for member who doesn't meet requirements
+POST http://localhost:5247/api/eligibility/check
+Content-Type: application/json
+Accept: application/json
+
+{
+  "memberData": {
+    "memberId": 456,
+    "age": 22,
+    "memberSince": "2025-01-15T00:00:00Z", 
+    "primaryAssetValue": 5000,
+    "secondaryAssetValue": 8000,
+    "hasActiveLoan": true,
+    "hasDelinquentLoan": false,
+    "isPep": false,
+    "isMemberRequestedMoneyThisMonth": true,
+    "isMemberHasAnotherActiveClaim": false,
+    "isMemberHasPendingClaim": true,
+    "isMemberHasOverduePayment": true
+  },
+  "claimsToCheck": [
+    "ClaimOne",
+    "ClaimFour"
+  ]
+}
+
+### Check single claim type
+POST http://localhost:5247/api/eligibility/check
+Content-Type: application/json
+Accept: application/json
+
+{
+  "memberData": {
+    "memberId": 789,
+    "age": 28,
+    "memberSince": "2022-06-10T00:00:00Z",
+    "primaryAssetValue": 15000,
+    "secondaryAssetValue": 4000,
+    "hasActiveLoan": false,
+    "hasDelinquentLoan": false,
+    "isPep": false,
+    "isMemberRequestedMoneyThisMonth": false,
+    "isMemberHasAnotherActiveClaim": false,
+    "isMemberHasPendingClaim": false,
+    "isMemberHasOverduePayment": false
+  },
+  "claimsToCheck": [
+    "ClaimTwo"
+  ]
+}
+
+### Check all claim types (claimsToCheck not provided)
+POST http://localhost:5247/api/eligibility/check
+Content-Type: application/json
+Accept: application/json
+
+{
+  "memberData": {
+    "memberId": 555,
+    "age": 40,
+    "memberSince": "2018-03-22T00:00:00Z",
+    "primaryAssetValue": 35000,
+    "secondaryAssetValue": 4500,
+    "hasActiveLoan": false,
+    "hasDelinquentLoan": false,
+    "isPep": false,
+    "isMemberRequestedMoneyThisMonth": false,
+    "isMemberHasAnotherActiveClaim": false,
+    "isMemberHasPendingClaim": false,
+    "isMemberHasOverduePayment": false
+  }
 }
