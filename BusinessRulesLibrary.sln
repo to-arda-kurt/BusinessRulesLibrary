@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # 
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BRL.Library", "BRL.Library\BRL.Library.csproj", "{76967F4C-C99F-40FD-B8E0-C647F74F2C6C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AD372DD6-58DC-4E7B-BC7E-DD4B495FC05B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BRL.Core", "BRL.Core\BRL.Core.csproj", "{5AA91C67-74F8-4D41-AE1D-D9DC2437C02C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BRL.Business", "BRL.Business\BRL.Business.csproj", "{619FA3EC-E5CF-46A5-956F-5855CA080BFA}"
